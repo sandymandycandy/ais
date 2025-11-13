@@ -6,8 +6,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Notes from './pages/Notes';
+import NoteDetail from './pages/NoteDetail';
+import UploadNotes from './pages/UploadNotes';
 import Exams from './pages/Exams';
+import ExamDetail from './pages/ExamDetail';
+import MockTest from './pages/MockTest';
 import Opportunities from './pages/Opportunities';
+import Profile from './pages/Profile';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -85,11 +90,55 @@ const App: React.FC = () => {
         />
 
         <Route
+          path="/notes/upload"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <UploadNotes />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/notes/:id"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <NoteDetail />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/exams"
           element={
             <ProtectedRoute>
               <Layout>
                 <Exams />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/exams/:id"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <ExamDetail />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/mock-tests/:id"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <MockTest />
               </Layout>
             </ProtectedRoute>
           }
@@ -144,12 +193,7 @@ const App: React.FC = () => {
           element={
             <ProtectedRoute>
               <Layout>
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-4">Profile</h1>
-                    <p className="text-gray-600">Coming Soon - Manage your profile and achievements</p>
-                  </div>
-                </div>
+                <Profile />
               </Layout>
             </ProtectedRoute>
           }
