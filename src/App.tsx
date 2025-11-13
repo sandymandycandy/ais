@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
+import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/layout/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -29,10 +30,12 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 // Layout Component
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      {children}
-    </div>
+    <ErrorBoundary>
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        {children}
+      </div>
+    </ErrorBoundary>
   );
 };
 
