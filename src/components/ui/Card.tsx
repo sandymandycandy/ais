@@ -1,0 +1,45 @@
+import React from 'react';
+import { cn } from '../../lib/utils';
+
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  hover?: boolean;
+}
+
+const Card: React.FC<CardProps> = ({ children, hover = false, className, ...props }) => {
+  return (
+    <div
+      className={cn(
+        'bg-white rounded-lg border border-gray-200 shadow-sm',
+        hover && 'hover:shadow-md transition-shadow cursor-pointer',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+const CardHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className,
+}) => {
+  return <div className={cn('p-6 border-b border-gray-200', className)}>{children}</div>;
+};
+
+const CardContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className,
+}) => {
+  return <div className={cn('p-6', className)}>{children}</div>;
+};
+
+const CardFooter: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className,
+}) => {
+  return <div className={cn('p-6 border-t border-gray-200 bg-gray-50', className)}>{children}</div>;
+};
+
+export { Card, CardHeader, CardContent, CardFooter };
