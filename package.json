@@ -7,9 +7,15 @@
     "dev": "vite",
     "server": "tsx watch server/index.ts",
     "server:dev": "nodemon --watch server --exec tsx server/index.ts",
+    "start": "echo 'Start backend (npm run server) and frontend (npm run dev) in separate terminals'",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "mongo:docker": "docker run -d --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password123 -v mongodb_data:/data/db mongo:6.0",
+    "mongo:stop": "docker stop mongodb",
+    "mongo:start": "docker start mongodb",
+    "mongo:remove": "docker rm -f mongodb",
+    "mongo:logs": "docker logs mongodb -f"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.8",
