@@ -14,6 +14,9 @@ import ExamDetail from './pages/ExamDetail';
 import MockTest from './pages/MockTest';
 import Opportunities from './pages/Opportunities';
 import Profile from './pages/Profile';
+import StudyCircles from './pages/StudyCircles';
+import StudyCircleDetail from './pages/StudyCircleDetail';
+import CreateStudyCircle from './pages/CreateStudyCircle';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -158,22 +161,41 @@ const App: React.FC = () => {
           }
         />
 
-        {/* Placeholder routes for other pages */}
+        {/* Study Circles Routes */}
         <Route
           path="/study-circles"
           element={
             <ProtectedRoute>
               <Layout>
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-4">Study Circles</h1>
-                    <p className="text-gray-600">Coming Soon - Join study groups and collaborate with peers</p>
-                  </div>
-                </div>
+                <StudyCircles />
               </Layout>
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/study-circles/create"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <CreateStudyCircle />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/study-circles/:id"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <StudyCircleDetail />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Placeholder routes for other pages */}
 
         <Route
           path="/mentors"
