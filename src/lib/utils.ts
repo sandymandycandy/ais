@@ -38,3 +38,66 @@ export function formatNumber(num: number) {
   if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
   return num.toString();
 }
+
+// Smooth scroll utilities
+export function scrollToElement(elementId: string, offset: number = 0) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const top = element.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+export function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Debounce function
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: NodeJS.Timeout;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+
+// Format currency
+export function formatCurrency(amount: number, currency: string = '₹'): string {
+  return `${currency}${amount.toLocaleString('en-IN')}`;
+}
+
+// Copy to clipboard
+export async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (err) {
+    console.error('Failed to copy:', err);
+    return false;
+  }
+}
+
+// Validate email
+export function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Truncate text
+export function truncate(text: string, length: number): string {
+  if (text.length <= length) return text;
+  return text.substring(0, length) + '...';
+}
+
+// Get initials from name
+export function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase()
+    .substring(0, 2);
+}
