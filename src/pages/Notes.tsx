@@ -19,7 +19,7 @@ const Notes: React.FC = () => {
 
   const fetchNotes = async () => {
     try {
-      const response = await api.get('/notes');
+      const response: any = await api.get('/notes');
       setNotes(response.notes || []);
     } catch (error) {
       console.error('Error fetching notes:', error);

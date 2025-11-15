@@ -8,11 +8,10 @@ import {
   Trophy,
   Zap,
   Calendar,
-  BarChart3,
-  PieChart
+  BarChart3
 } from 'lucide-react';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import Badge from '../components/ui/Badge';
 import { useAuthStore } from '../store/authStore';
 import api, { getErrorMessage } from '../lib/api';
 
@@ -51,7 +50,6 @@ const Analytics: React.FC = () => {
   const { user } = useAuthStore();
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchAnalytics();
@@ -60,11 +58,10 @@ const Analytics: React.FC = () => {
   const fetchAnalytics = async () => {
     try {
       setLoading(true);
-      setError(null);
       const response = await api.get('/analytics');
       setAnalytics(response.data);
     } catch (err: any) {
-      setError(getErrorMessage(err));
+      console.error(getErrorMessage(err));
     } finally {
       setLoading(false);
     }

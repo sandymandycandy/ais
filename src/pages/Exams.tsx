@@ -19,7 +19,7 @@ const Exams: React.FC = () => {
 
   const fetchExams = async () => {
     try {
-      const response = await api.get('/exams');
+      const response: any = await api.get('/exams');
       setExams(response.exams || []);
     } catch (error) {
       console.error('Error fetching exams:', error);
@@ -30,7 +30,7 @@ const Exams: React.FC = () => {
 
   const fetchTargetedExams = async () => {
     try {
-      const response = await api.get('/exams/my-targets');
+      const response: any = await api.get('/exams/my-targets');
       setTargetedExams(response.exams || []);
     } catch (error) {
       console.error('Error fetching targeted exams:', error);

@@ -46,7 +46,7 @@ const NoteDetail: React.FC = () => {
 
   const fetchNoteDetail = async () => {
     try {
-      const response = await api.get(`/notes/${id}`);
+      const response: any = await api.get(`/notes/${id}`);
       setNote(response.note);
 
       if (response.note.aiSummary) {
@@ -66,7 +66,7 @@ const NoteDetail: React.FC = () => {
   const generateAISummary = async () => {
     setLoadingAI(true);
     try {
-      const response = await api.post(`/notes/${id}/summary`);
+      const response: any = await api.post(`/notes/${id}/summary`);
       setAiSummary(response.summary);
     } catch (error: any) {
       alert(error.message || 'Failed to generate summary');
@@ -78,7 +78,7 @@ const NoteDetail: React.FC = () => {
   const generateFlashcards = async () => {
     setLoadingAI(true);
     try {
-      const response = await api.post(`/notes/${id}/flashcards`);
+      const response: any = await api.post(`/notes/${id}/flashcards`);
       setFlashcards(response.flashcards);
     } catch (error: any) {
       alert(error.message || 'Failed to generate flashcards');
@@ -96,7 +96,7 @@ const NoteDetail: React.FC = () => {
     setLoadingAI(true);
 
     try {
-      const response = await api.post('/notes/clarity-bot', {
+      const response: any = await api.post('/notes/clarity-bot', {
         question: clarityBotInput,
         noteId: id,
       });

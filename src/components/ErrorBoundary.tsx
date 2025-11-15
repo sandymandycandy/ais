@@ -1,6 +1,7 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
-import { Button } from './ui/Button';
+import Button from './ui/Button';
 import { Card } from './ui/Card';
 
 interface Props {
@@ -67,7 +68,7 @@ class ErrorBoundary extends Component<Props, State> {
                 We encountered an unexpected error. Don't worry, your data is safe.
               </p>
 
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+              {import.meta.env.DEV && this.state.error && (
                 <div className="mb-6 text-left">
                   <details className="bg-gray-100 rounded-lg p-4">
                     <summary className="cursor-pointer font-medium text-gray-900 mb-2">

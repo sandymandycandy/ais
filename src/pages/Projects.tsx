@@ -12,10 +12,10 @@ import {
   Target,
   Layers,
 } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
-import { Input } from '../components/ui/Input';
+import Badge from '../components/ui/Badge';
+import Input from '../components/ui/Input';
 import { EmptyState } from '../components/ui/EmptyState';
 import { CardSkeleton } from '../components/ui/LoadingSkeleton';
 import api, { getErrorMessage } from '../lib/api';

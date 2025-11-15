@@ -15,9 +15,9 @@ import {
   Award,
   AlertCircle,
 } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import Badge from '../components/ui/Badge';
 import api from '../lib/api';
 
 interface SyllabusSection {

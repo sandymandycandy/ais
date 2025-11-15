@@ -16,9 +16,9 @@ import {
   UserPlus,
   AlertCircle,
 } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import Badge from '../components/ui/Badge';
 import { useAuthStore } from '../store/authStore';
 import api, { getErrorMessage } from '../lib/api';
 

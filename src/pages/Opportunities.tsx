@@ -19,7 +19,7 @@ const Opportunities: React.FC = () => {
   const fetchOpportunities = async () => {
     try {
       const params = selectedType !== 'all' ? { type: selectedType } : {};
-      const response = await api.get('/opportunities', { params });
+      const response: any = await api.get('/opportunities', { params });
       setOpportunities(response.opportunities || []);
     } catch (error) {
       console.error('Error fetching opportunities:', error);

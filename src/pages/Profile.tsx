@@ -23,10 +23,10 @@ import {
   Linkedin,
   Globe,
 } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
-import { Input } from '../components/ui/Input';
+import Badge from '../components/ui/Badge';
+import Input from '../components/ui/Input';
 import { useAuthStore } from '../store/authStore';
 import api from '../lib/api';
 

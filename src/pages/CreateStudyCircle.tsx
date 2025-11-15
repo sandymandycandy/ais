@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Users, Globe, Lock, CheckCircle, AlertCircle } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Input } from '../components/ui/Input';
+import Input from '../components/ui/Input';
 import api, { getErrorMessage } from '../lib/api';
 
 interface FormData {

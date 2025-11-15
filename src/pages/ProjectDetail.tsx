@@ -14,9 +14,9 @@ import {
   MessageCircle,
   UserPlus,
 } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import Badge from '../components/ui/Badge';
 import { useAuthStore } from '../store/authStore';
 import { useToast } from '../components/ToastProvider';
 import api, { getErrorMessage } from '../lib/api';

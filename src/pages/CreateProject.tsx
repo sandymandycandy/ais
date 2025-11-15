@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Layers, CheckCircle, AlertCircle } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { Input } from '../components/ui/Input';
+import Input from '../components/ui/Input';
 import { useToast } from '../components/ToastProvider';
 import api, { getErrorMessage } from '../lib/api';
 
