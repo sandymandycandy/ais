@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, CheckCircle, Info, AlertTriangle, X } from 'lucide-react';
 import Button from './Button';
 import { Card } from './Card';
 
@@ -11,11 +11,11 @@ interface ConfirmDialogProps {
   message: string;
   confirmText?: string;
   cancelText?: string;
-  variant?: 'danger' | 'warning' | 'info';
+  variant?: 'danger' | 'warning' | 'info' | 'success';
   loading?: boolean;
 }
 
-export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
+const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   isOpen,
   onClose,
   onConfirm,
@@ -28,46 +28,72 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const getVariantStyles = () => {
-    switch (variant) {
-      case 'danger':
-        return {
-          icon: 'text-red-600',
-          button: 'danger' as const,
-        };
-      case 'warning':
-        return {
-          icon: 'text-yellow-600',
-          button: 'primary' as const,
-        };
-      default:
-        return {
-          icon: 'text-blue-600',
-          button: 'primary' as const,
-        };
-    }
+  const icons = {
+    danger: <AlertCircle className="w-12 h-12 text-red-500" />,
+    warning: <AlertTriangle className="w-12 h-12 text-yellow-500" />,
+    info: <Info className="w-12 h-12 text-blue-500" />,
+    success: <CheckCircle className="w-12 h-12 text-green-500" />,
   };
 
-  const styles = getVariantStyles();
+  const bgColors = {
+    danger: 'bg-red-50 dark:bg-red-900/20',
+    warning: 'bg-yellow-50 dark:bg-yellow-900/20',
+    info: 'bg-blue-50 dark:bg-blue-900/20',
+    success: 'bg-green-50 dark:bg-green-900/20',
+  };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
-      <Card className="max-w-md w-full p-6 animate-scale-in">
-        <div className="flex items-start gap-4 mb-4">
-          <AlertCircle className={`w-6 h-6 ${styles.icon} flex-shrink-0 mt-0.5`} />
-          <div className="flex-1">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">{title}</h2>
-            <p className="text-gray-600">{message}</p>
-          </div>
-        </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
-        <div className="flex gap-3 justify-end">
-          <Button variant="outline" onClick={onClose} disabled={loading}>
-            {cancelText}
-          </Button>
-          <Button variant={styles.button} onClick={onConfirm} disabled={loading}>
-            {loading ? 'Processing...' : confirmText}
-          </Button>
+      {/* Dialog */}
+      <Card className="relative max-w-md w-full animate-scale-in-bounce shadow-2xl">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          disabled={loading}
+        >
+          <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+        </button>
+
+        {/* Content */}
+        <div className="p-6">
+          <div className={`flex justify-center mb-4 ${bgColors[variant]} rounded-full w-20 h-20 mx-auto items-center`}>
+            {icons[variant]}
+          </div>
+
+          <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-2">
+            {title}
+          </h2>
+
+          <p className="text-center text-gray-600 dark:text-gray-300 mb-6">
+            {message}
+          </p>
+
+          {/* Actions */}
+          <div className="flex gap-3">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={onClose}
+              disabled={loading}
+            >
+              {cancelText}
+            </Button>
+            <Button
+              variant={variant === 'danger' ? 'danger' : 'primary'}
+              className="flex-1"
+              onClick={onConfirm}
+              loading={loading}
+            >
+              {confirmText}
+            </Button>
+          </div>
         </div>
       </Card>
     </div>

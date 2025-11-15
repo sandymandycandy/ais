@@ -10,8 +10,8 @@ const Card: React.FC<CardProps> = ({ children, hover = false, className, ...prop
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-200',
-        hover && 'hover:shadow-lg hover:border-gray-300 hover:-translate-y-0.5 cursor-pointer',
+        'bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-gray-900/20 transition-all duration-200',
+        hover && 'hover:shadow-lg dark:hover:shadow-gray-900/40 hover:border-gray-300 dark:hover:border-gray-600 hover:-translate-y-0.5 cursor-pointer',
         className
       )}
       {...props}
@@ -25,7 +25,7 @@ const CardHeader: React.FC<{ children: React.ReactNode; className?: string }> = 
   children,
   className,
 }) => {
-  return <div className={cn('p-6 border-b border-gray-200', className)}>{children}</div>;
+  return <div className={cn('p-6 border-b border-gray-200 dark:border-gray-700', className)}>{children}</div>;
 };
 
 const CardContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
@@ -39,7 +39,7 @@ const CardFooter: React.FC<{ children: React.ReactNode; className?: string }> = 
   children,
   className,
 }) => {
-  return <div className={cn('p-6 border-t border-gray-200 bg-gray-50', className)}>{children}</div>;
+  return <div className={cn('p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50', className)}>{children}</div>;
 };
 
 export { Card, CardHeader, CardContent, CardFooter };

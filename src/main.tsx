@@ -4,11 +4,14 @@ import './index.css'
 import './styles/animations.css'
 import App from './App.tsx'
 import { ToastProvider } from './components/ToastProvider'
+import { ThemeProvider } from './context/ThemeContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ToastProvider>
-      <App />
-    </ToastProvider>
+    <ThemeProvider>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </ThemeProvider>
   </StrictMode>,
 )

@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header Skeleton */}
           <div className="mb-8 animate-fade-in">
@@ -99,14 +99,14 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Header */}
         <div className="mb-8 animate-fade-in-down">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">
             Welcome back, {user?.name}! 👋
           </h1>
-          <p className="text-gray-600 mt-2 text-lg">Here's what's happening with your studies today</p>
+          <p className="text-gray-600 dark:text-gray-300 mt-2 text-lg">Here's what's happening with your studies today</p>
         </div>
 
         {/* Stats Cards */}
@@ -114,13 +114,13 @@ const Dashboard: React.FC = () => {
           <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Level</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Level</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                   {user?.level || 1}
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
+              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
             </CardContent>
           </Card>
@@ -128,13 +128,13 @@ const Dashboard: React.FC = () => {
           <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">XP Points</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">XP Points</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                   {user?.xp || 0}
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-green-100 to-emerald-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
-                <Award className="w-6 h-6 text-green-600" />
+              <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <Award className="w-6 h-6 text-green-600 dark:text-green-400" />
               </div>
             </CardContent>
           </Card>
@@ -142,13 +142,13 @@ const Dashboard: React.FC = () => {
           <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Coins</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Coins</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
                   {user?.coins || 0}
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-yellow-100 to-orange-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
-                <Award className="w-6 h-6 text-yellow-600" />
+              <div className="bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <Award className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
               </div>
             </CardContent>
           </Card>
@@ -156,13 +156,13 @@ const Dashboard: React.FC = () => {
           <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Study Streak</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Study Streak</p>
                 <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   7 days
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-orange-100 to-red-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
-                <Target className="w-6 h-6 text-orange-600" />
+              <div className="bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/30 dark:to-red-900/30 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
+                <Target className="w-6 h-6 text-orange-600 dark:text-orange-400" />
               </div>
             </CardContent>
           </Card>
@@ -175,8 +175,8 @@ const Dashboard: React.FC = () => {
             <Card hover className="hover-lift">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
-                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center space-x-2">
+                    <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     <span>Today's Tasks</span>
                   </h2>
                   <Button size="sm" variant="outline">Add Task</Button>
@@ -189,12 +189,12 @@ const Dashboard: React.FC = () => {
                     { task: 'Take mock test for JEE Advanced', priority: 'medium', time: '4:00 PM' },
                     { task: 'Review yesterday\'s notes', priority: 'low', time: '7:00 PM' },
                   ].map((item, idx) => (
-                    <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div className="flex items-center space-x-3">
-                        <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+                        <input type="checkbox" className="w-4 h-4 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700" />
                         <div>
-                          <p className="font-medium text-gray-900">{item.task}</p>
-                          <p className="text-sm text-gray-500 flex items-center space-x-1">
+                          <p className="font-medium text-gray-900 dark:text-white">{item.task}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center space-x-1">
                             <Clock className="w-3 h-3" />
                             <span>{item.time}</span>
                           </p>
@@ -212,8 +212,8 @@ const Dashboard: React.FC = () => {
             {/* Recent Test Performance */}
             <Card>
               <CardHeader>
-                <h2 className="text-xl font-bold text-gray-900 flex items-center space-x-2">
-                  <BookOpen className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center space-x-2">
+                  <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <span>Recent Mock Tests</span>
                 </h2>
               </CardHeader>
@@ -224,14 +224,14 @@ const Dashboard: React.FC = () => {
                     { test: 'Mathematics Chapter Test', score: 92, date: '5 days ago', improvement: '+8%' },
                     { test: 'Chemistry Mock Test', score: 78, date: '1 week ago', improvement: '-3%' },
                   ].map((item, idx) => (
-                    <div key={idx} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <div key={idx} className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-700 rounded-lg">
                       <div>
-                        <p className="font-medium text-gray-900">{item.test}</p>
-                        <p className="text-sm text-gray-500">{item.date}</p>
+                        <p className="font-medium text-gray-900 dark:text-white">{item.test}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">{item.date}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-gray-900">{item.score}%</p>
-                        <p className={`text-sm ${item.improvement.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                        <p className="text-2xl font-bold text-gray-900 dark:text-white">{item.score}%</p>
+                        <p className={`text-sm ${item.improvement.startsWith('+') ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                           {item.improvement}
                         </p>
                       </div>
@@ -250,8 +250,8 @@ const Dashboard: React.FC = () => {
             {/* Upcoming Deadlines */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-bold text-gray-900 flex items-center space-x-2">
-                  <Calendar className="w-5 h-5 text-blue-600" />
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center space-x-2">
+                  <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <span>Upcoming Deadlines</span>
                 </h2>
               </CardHeader>
@@ -262,12 +262,12 @@ const Dashboard: React.FC = () => {
                     { title: 'Google Summer Internship', days: 12, type: 'Opportunity' },
                     { title: 'Project Submission', days: 15, type: 'Assignment' },
                   ].map((item, idx) => (
-                    <div key={idx} className="p-3 bg-gray-50 rounded-lg">
+                    <div key={idx} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                       <div className="flex items-center justify-between mb-1">
-                        <p className="font-medium text-gray-900 text-sm">{item.title}</p>
+                        <p className="font-medium text-gray-900 dark:text-white text-sm">{item.title}</p>
                         <Badge variant="info">{item.type}</Badge>
                       </div>
-                      <p className="text-sm text-gray-500">{item.days} days remaining</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">{item.days} days remaining</p>
                     </div>
                   ))}
                 </div>
@@ -277,7 +277,7 @@ const Dashboard: React.FC = () => {
             {/* Quick Actions */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-bold text-gray-900">Quick Actions</h2>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white">Quick Actions</h2>
               </CardHeader>
               <CardContent className="space-y-2">
                 <Link to="/notes/upload">
@@ -310,7 +310,7 @@ const Dashboard: React.FC = () => {
             {/* Progress Overview */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-bold text-gray-900">Syllabus Progress</h2>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white">Syllabus Progress</h2>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -321,12 +321,12 @@ const Dashboard: React.FC = () => {
                   ].map((item, idx) => (
                     <div key={idx}>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="font-medium text-gray-700">{item.subject}</span>
-                        <span className="text-gray-600">{item.progress}%</span>
+                        <span className="font-medium text-gray-700 dark:text-gray-300">{item.subject}</span>
+                        <span className="text-gray-600 dark:text-gray-400">{item.progress}%</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                         <div
-                          className="bg-blue-600 h-2 rounded-full transition-all"
+                          className="bg-blue-600 dark:bg-blue-500 h-2 rounded-full transition-all"
                           style={{ width: `${item.progress}%` }}
                         ></div>
                       </div>
