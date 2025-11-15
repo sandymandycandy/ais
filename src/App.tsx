@@ -1,30 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
 import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/layout/Navbar';
+
+// Eager load auth pages for faster initial load
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-import Notes from './pages/Notes';
-import NoteDetail from './pages/NoteDetail';
-import UploadNotes from './pages/UploadNotes';
-import Exams from './pages/Exams';
-import ExamDetail from './pages/ExamDetail';
-import MockTest from './pages/MockTest';
-import Opportunities from './pages/Opportunities';
-import Profile from './pages/Profile';
-import StudyCircles from './pages/StudyCircles';
-import StudyCircleDetail from './pages/StudyCircleDetail';
-import CreateStudyCircle from './pages/CreateStudyCircle';
-import Mentors from './pages/Mentors';
-import MentorDetail from './pages/MentorDetail';
-import OpportunityDetail from './pages/OpportunityDetail';
-import Projects from './pages/Projects';
-import CreateProject from './pages/CreateProject';
-import ProjectDetail from './pages/ProjectDetail';
-import SkillCourses from './pages/SkillCourses';
-import Analytics from './pages/Analytics';
+
+// Lazy load all other pages for code-splitting
+const Notes = lazy(() => import('./pages/Notes'));
+const NoteDetail = lazy(() => import('./pages/NoteDetail'));
+const UploadNotes = lazy(() => import('./pages/UploadNotes'));
+const Exams = lazy(() => import('./pages/Exams'));
+const ExamDetail = lazy(() => import('./pages/ExamDetail'));
+const MockTest = lazy(() => import('./pages/MockTest'));
+const Opportunities = lazy(() => import('./pages/Opportunities'));
+const OpportunityDetail = lazy(() => import('./pages/OpportunityDetail'));
+const Profile = lazy(() => import('./pages/Profile'));
+const StudyCircles = lazy(() => import('./pages/StudyCircles'));
+const StudyCircleDetail = lazy(() => import('./pages/StudyCircleDetail'));
+const CreateStudyCircle = lazy(() => import('./pages/CreateStudyCircle'));
+const Mentors = lazy(() => import('./pages/Mentors'));
+const MentorDetail = lazy(() => import('./pages/MentorDetail'));
+const Projects = lazy(() => import('./pages/Projects'));
+const CreateProject = lazy(() => import('./pages/CreateProject'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const SkillCourses = lazy(() => import('./pages/SkillCourses'));
+const Analytics = lazy(() => import('./pages/Analytics'));
+const Notifications = lazy(() => import('./pages/Notifications'));
+const Messages = lazy(() => import('./pages/Messages'));
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -38,13 +44,25 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return isAuthenticated ? <Navigate to="/dashboard" /> : <>{children}</>;
 };
 
+// Loading Component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+      <p className="text-gray-600">Loading...</p>
+    </div>
+  </div>
+);
+
 // Layout Component
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        {children}
+        <Suspense fallback={<PageLoader />}>
+          {children}
+        </Suspense>
       </div>
     </ErrorBoundary>
   );
@@ -290,6 +308,30 @@ const App: React.FC = () => {
             <ProtectedRoute>
               <Layout>
                 <Analytics />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Notifications Route */}
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Notifications />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Messages Route */}
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Messages />
               </Layout>
             </ProtectedRoute>
           }

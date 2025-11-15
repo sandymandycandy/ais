@@ -13,8 +13,9 @@ import {
   LogOut,
   Menu,
   X,
+  Bell,
+  MessageCircle,
 } from 'lucide-react';
-import Button from '../ui/Button';
 
 const Navbar: React.FC = () => {
   const { user, logout, isAuthenticated } = useAuthStore();
@@ -79,6 +80,24 @@ const Navbar: React.FC = () => {
               <div className="flex items-center space-x-1 px-3 py-1 bg-blue-50 rounded-full">
                 <span className="text-xs font-bold text-blue-900">Lv {user?.level || 1}</span>
               </div>
+            </div>
+
+            {/* Notifications & Messages */}
+            <div className="flex items-center space-x-2">
+              <Link
+                to="/notifications"
+                className="relative p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                <Bell className="w-5 h-5" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              </Link>
+              <Link
+                to="/messages"
+                className="relative p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full"></span>
+              </Link>
             </div>
 
             {/* Profile Dropdown */}
@@ -154,11 +173,28 @@ const Navbar: React.FC = () => {
             })}
             <div className="border-t border-gray-200 pt-2">
               <Link
+                to="/notifications"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+              >
+                <Bell className="w-5 h-5" />
+                <span>Notifications</span>
+              </Link>
+              <Link
+                to="/messages"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <span>Messages</span>
+              </Link>
+              <Link
                 to="/profile"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100"
+                className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
               >
-                Profile
+                <User className="w-5 h-5" />
+                <span>Profile</span>
               </Link>
               <button
                 onClick={() => {
