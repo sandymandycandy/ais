@@ -79,8 +79,8 @@ const Login: React.FC = () => {
               </Link>
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Signing in...' : 'Sign In'}
+            <Button type="submit" className="w-full" loading={isLoading}>
+              Sign In
             </Button>
 
             <div className="text-center">

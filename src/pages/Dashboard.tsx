@@ -5,6 +5,7 @@ import api from '../lib/api';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
+import Skeleton from '../components/ui/Skeleton';
 import {
   TrendingUp,
   Award,
@@ -41,8 +42,58 @@ const Dashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header Skeleton */}
+          <div className="mb-8">
+            <Skeleton className="h-10 w-64 mb-2" />
+            <Skeleton className="h-6 w-96" />
+          </div>
+
+          {/* Stats Cards Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {[1, 2, 3, 4].map((i) => (
+              <Card key={i}>
+                <CardContent className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <Skeleton className="h-4 w-20 mb-2" />
+                    <Skeleton className="h-8 w-16" />
+                  </div>
+                  <Skeleton variant="circular" width={48} height={48} />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Content Skeleton */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-6">
+              <Card>
+                <CardHeader>
+                  <Skeleton className="h-6 w-48" />
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {[1, 2, 3].map((i) => (
+                    <Skeleton key={i} className="h-16 w-full" />
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <Skeleton className="h-6 w-32" />
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <Skeleton key={i} className="h-12 w-full" />
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -10,8 +10,8 @@ const Card: React.FC<CardProps> = ({ children, hover = false, className, ...prop
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border border-gray-200 shadow-sm',
-        hover && 'hover:shadow-md transition-shadow cursor-pointer',
+        'bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-200',
+        hover && 'hover:shadow-lg hover:border-gray-300 hover:-translate-y-0.5 cursor-pointer',
         className
       )}
       {...props}
