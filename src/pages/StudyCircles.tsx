@@ -66,8 +66,8 @@ const StudyCircles: React.FC = () => {
       if (selectedSubject) params.append('subject', selectedSubject);
       if (selectedLevel) params.append('level', selectedLevel);
 
-      const response = await api.get(`/study-circles?${params.toString()}`);
-      setCircles(response.data.studyCircles || []);
+      const response: any = await api.get(`/study-circles?${params.toString()}`);
+      setCircles(response.studyCircles || []);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

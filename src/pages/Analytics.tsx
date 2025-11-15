@@ -58,8 +58,8 @@ const Analytics: React.FC = () => {
   const fetchAnalytics = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/analytics');
-      setAnalytics(response.data);
+      const response: any = await api.get('/analytics');
+      setAnalytics(response);
     } catch (err: any) {
       console.error(getErrorMessage(err));
     } finally {

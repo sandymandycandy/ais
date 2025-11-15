@@ -107,11 +107,11 @@ const MockTest: React.FC = () => {
   const fetchTestDetails = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/mock-tests/${id}`);
-      setTest(response.data.mockTest);
-      setTimeRemaining(response.data.mockTest.duration * 60); // Convert minutes to seconds
+      const response: any = await api.get(`/mock-tests/${id}`);
+      setTest(response.mockTest);
+      setTimeRemaining(response.mockTest.duration * 60); // Convert minutes to seconds
       // Initialize answers array
-      const initialAnswers: Answer[] = response.data.mockTest.questions.map((q: Question) => ({
+      const initialAnswers: Answer[] = response.mockTest.questions.map((q: Question) => ({
         questionId: q._id,
         selectedOption: null,
         isMarkedForReview: false,
@@ -182,7 +182,7 @@ const MockTest: React.FC = () => {
       setSubmitting(true);
       const timeTaken = test ? test.duration * 60 - timeRemaining : 0;
 
-      const response = await api.post(`/mock-tests/${id}/submit`, {
+      const response: any = await api.post(`/mock-tests/${id}/submit`, {
         answers: answers.map((a) => ({
           questionId: a.questionId,
           selectedOption: a.selectedOption,
@@ -190,7 +190,7 @@ const MockTest: React.FC = () => {
         timeTaken,
       });
 
-      setResults(response.data.result);
+      setResults(response.result);
       setTestSubmitted(true);
       setShowSubmitConfirm(false);
     } catch (err: any) {

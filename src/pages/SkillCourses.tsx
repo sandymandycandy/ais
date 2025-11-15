@@ -34,8 +34,8 @@ const SkillCourses: React.FC = () => {
   const fetchCourses = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/skill-courses');
-      setCourses(response.data.courses || []);
+      const response: any = await api.get('/skill-courses');
+      setCourses(response.courses || []);
     } catch (err) {
       console.error(err);
     } finally {

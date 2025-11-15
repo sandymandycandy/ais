@@ -74,12 +74,12 @@ const OpportunityDetail: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/opportunities/${id}`);
-      setOpportunity(response.data.opportunity);
+      const response: any = await api.get(`/opportunities/${id}`);
+      setOpportunity(response.opportunity);
       // Check if user has bookmarked or applied
       // This would come from the API response
-      setIsBookmarked(response.data.isBookmarked || false);
-      setHasApplied(response.data.hasApplied || false);
+      setIsBookmarked(response.isBookmarked || false);
+      setHasApplied(response.hasApplied || false);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import { useToast } from '../components/ToastProvider';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardContent, CardHeader } from '../components/ui/Card';
@@ -8,6 +9,7 @@ import { Card, CardContent, CardHeader } from '../components/ui/Card';
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const { login, isLoading, error, clearError } = useAuthStore();
+  const { showToast } = useToast();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -20,9 +22,10 @@ const Login: React.FC = () => {
 
     try {
       await login(formData.email, formData.password);
+      showToast('Logged in successfully!', 'success');
       navigate('/dashboard');
-    } catch (error) {
-      // Error is handled in the store
+    } catch (error: any) {
+      showToast(error.message || 'Login failed', 'error');
     }
   };
 

@@ -71,8 +71,8 @@ const Mentors: React.FC = () => {
       if (selectedAvailability) params.append('availability', selectedAvailability);
       params.append('sortBy', sortBy);
 
-      const response = await api.get(`/mentors?${params.toString()}`);
-      setMentors(response.data.mentors || []);
+      const response: any = await api.get(`/mentors?${params.toString()}`);
+      setMentors(response.mentors || []);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

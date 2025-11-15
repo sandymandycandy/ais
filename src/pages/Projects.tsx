@@ -63,8 +63,8 @@ const Projects: React.FC = () => {
       if (selectedCategory) params.append('category', selectedCategory);
       if (selectedStatus) params.append('status', selectedStatus);
 
-      const response = await api.get(`/projects?${params.toString()}`);
-      setProjects(response.data.projects || []);
+      const response: any = await api.get(`/projects?${params.toString()}`);
+      setProjects(response.projects || []);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

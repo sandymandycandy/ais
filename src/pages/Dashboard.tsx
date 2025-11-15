@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await api.get('/dashboard');
+      const response: any = await api.get('/dashboard');
       setDashboardData(response.data);
     } catch (error) {
       console.error('Error fetching dashboard:', error);

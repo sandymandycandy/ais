@@ -43,9 +43,9 @@ const CreateProject: React.FC = () => {
         ...formData,
         tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
       };
-      const response = await api.post('/projects', projectData);
+      const response: any = await api.post('/projects', projectData);
       showToast('Project created successfully!', 'success');
-      navigate(`/projects/${response.data.project._id}`);
+      navigate(`/projects/${response.project._id}`);
     } catch (err: any) {
       showToast(getErrorMessage(err), 'error');
     } finally {

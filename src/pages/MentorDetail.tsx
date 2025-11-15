@@ -82,8 +82,8 @@ const MentorDetail: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/mentors/${id}`);
-      setMentor(response.data.mentor);
+      const response: any = await api.get(`/mentors/${id}`);
+      setMentor(response.mentor);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

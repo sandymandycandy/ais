@@ -78,8 +78,8 @@ const ExamDetail: React.FC = () => {
   const fetchExamDetails = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/exams/${id}`);
-      setExam(response.data.exam);
+      const response: any = await api.get(`/exams/${id}`);
+      setExam(response.exam);
       setError(null);
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to load exam details');
@@ -91,8 +91,8 @@ const ExamDetail: React.FC = () => {
   const toggleTargetExam = async () => {
     try {
       setTargeting(true);
-      const response = await api.post(`/exams/${id}/target`);
-      setExam({ ...exam!, isTargeted: response.data.isTargeted });
+      const response: any = await api.post(`/exams/${id}/target`);
+      setExam({ ...exam!, isTargeted: response.isTargeted });
     } catch (err: any) {
       alert(err.response?.data?.message || 'Failed to update target status');
     } finally {

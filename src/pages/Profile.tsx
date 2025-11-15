@@ -111,8 +111,8 @@ const Profile: React.FC = () => {
     setLoading(true);
     try {
       // Load user profile
-      const response = await api.get('/users/profile');
-      const userData = response.data.user;
+      const response: any = await api.get('/users/profile');
+      const userData = response.user;
 
       setProfileData({
         fullName: userData.fullName || '',

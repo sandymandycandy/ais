@@ -100,12 +100,12 @@ const CreateStudyCircle: React.FC = () => {
     setCreating(true);
 
     try {
-      const response = await api.post('/study-circles', formData);
+      const response: any = await api.post('/study-circles', formData);
       setSuccess(true);
 
       // Redirect to the new circle after 2 seconds
       setTimeout(() => {
-        navigate(`/study-circles/${response.data.studyCircle._id}`);
+        navigate(`/study-circles/${response.studyCircle._id}`);
       }, 2000);
     } catch (err: any) {
       setError(getErrorMessage(err));

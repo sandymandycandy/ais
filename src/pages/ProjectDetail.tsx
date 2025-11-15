@@ -74,8 +74,8 @@ const ProjectDetail: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/projects/${id}`);
-      setProject(response.data.project);
+      const response: any = await api.get(`/projects/${id}`);
+      setProject(response.project);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

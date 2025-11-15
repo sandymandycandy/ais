@@ -95,8 +95,8 @@ const StudyCircleDetail: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/study-circles/${id}`);
-      setCircle(response.data.studyCircle);
+      const response: any = await api.get(`/study-circles/${id}`);
+      setCircle(response.studyCircle);
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {

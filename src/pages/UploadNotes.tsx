@@ -4,6 +4,7 @@ import { Upload, File, X, CheckCircle, AlertCircle, Loader2 } from 'lucide-react
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card } from '../components/ui/Card';
+import { useToast } from '../components/ToastProvider';
 import api from '../lib/api';
 
 interface FormData {
@@ -19,6 +20,7 @@ interface FormData {
 const UploadNotes: React.FC = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { showToast } = useToast();
 
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -163,7 +165,7 @@ const UploadNotes: React.FC = () => {
       uploadData.append('description', formData.description);
 
       // Upload with progress tracking
-      const response = await api.post('/notes', uploadData, {
+      const response: any = await api.post('/notes', uploadData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -177,13 +179,14 @@ const UploadNotes: React.FC = () => {
 
       setSuccess(true);
       setUploading(false);
+      showToast('Note uploaded successfully!', 'success');
 
-      // Redirect to note detail page after 2 seconds
-      setTimeout(() => {
-        navigate(`/notes/${response.data.note._id}`);
-      }, 2000);
+      // Redirect to note detail page
+      navigate(`/notes/${response.note._id}`);
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to upload note. Please try again.');
+      const errorMsg = err.response?.message || err.message || 'Failed to upload note. Please try again.';
+      setError(errorMsg);
+      showToast(errorMsg, 'error');
       setUploading(false);
       setUploadProgress(0);
     }
