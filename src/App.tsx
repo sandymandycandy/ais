@@ -20,6 +20,11 @@ import CreateStudyCircle from './pages/CreateStudyCircle';
 import Mentors from './pages/Mentors';
 import MentorDetail from './pages/MentorDetail';
 import OpportunityDetail from './pages/OpportunityDetail';
+import Projects from './pages/Projects';
+import CreateProject from './pages/CreateProject';
+import ProjectDetail from './pages/ProjectDetail';
+import SkillCourses from './pages/SkillCourses';
+import Analytics from './pages/Analytics';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -227,6 +232,64 @@ const App: React.FC = () => {
             <ProtectedRoute>
               <Layout>
                 <MentorDetail />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Projects Routes */}
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Projects />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/projects/create"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <CreateProject />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/projects/:id"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <ProjectDetail />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Skill Courses Route */}
+        <Route
+          path="/skill-courses"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <SkillCourses />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Analytics Route */}
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Analytics />
               </Layout>
             </ProtectedRoute>
           }
