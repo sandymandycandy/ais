@@ -1,4 +1,6 @@
 import express, { Application, Request, Response } from 'express';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db';
@@ -8,6 +10,15 @@ dotenv.config();
 
 // Initialize Express app
 const app: Application = express();
+const httpServer = createServer(app);
+
+// Initialize Socket.io
+const io = new Server(httpServer, {
+  cors: {
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    credentials: true
+  }
+});
 
 // Connect to MongoDB
 connectDB();
@@ -36,6 +47,7 @@ import skillCourseRoutes from './routes/skillCourses';
 import projectRoutes from './routes/projects';
 import dashboardRoutes from './routes/dashboard';
 import gamificationRoutes from './routes/gamification';
+import notificationRoutes from './routes/notifications';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -49,6 +61,7 @@ app.use('/api/skill-courses', skillCourseRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/gamification', gamificationRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // Health check
 app.get('/api/health', (req: Request, res: Response) => {
@@ -69,11 +82,17 @@ app.use((err: any, req: Request, res: Response, next: any) => {
   });
 });
 
+// Socket.io connection handling
+import { setupSocketHandlers } from './socket';
+setupSocketHandlers(io);
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`⚡ Socket.io enabled`);
 });
 
 export default app;
+export { io };

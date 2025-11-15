@@ -5,13 +5,16 @@ import './styles/animations.css'
 import App from './App.tsx'
 import { ToastProvider } from './components/ToastProvider'
 import { ThemeProvider } from './context/ThemeContext'
+import { SocketProvider } from './context/SocketContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
-      <ToastProvider>
-        <App />
-      </ToastProvider>
+      <SocketProvider>
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </SocketProvider>
     </ThemeProvider>
   </StrictMode>,
 )

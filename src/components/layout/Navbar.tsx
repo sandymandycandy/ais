@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import ScrollProgress from '../ui/ScrollProgress';
 import ThemeToggle from '../ui/ThemeToggle';
+import NotificationCenter from '../notifications/NotificationCenter';
 import {
   Home,
   FileText,
@@ -94,13 +95,7 @@ const Navbar: React.FC = () => {
 
             {/* Notifications & Messages */}
             <div className="flex items-center space-x-2">
-              <Link
-                to="/notifications"
-                className="relative p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <Bell className="w-5 h-5" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </Link>
+              <NotificationCenter />
               <Link
                 to="/messages"
                 className="relative p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
