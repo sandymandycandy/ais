@@ -111,9 +111,9 @@ const Notifications: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in-up">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 animate-fade-in-down">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Notifications</h1>
@@ -156,7 +156,7 @@ const Notifications: React.FC = () => {
 
       {/* Notifications List */}
       {filteredNotifications.length === 0 ? (
-        <Card className="p-12 text-center">
+        <Card className="p-12 text-center animate-scale-in">
           <Bell className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
             {filter === 'unread' ? 'No unread notifications' : 'No notifications yet'}
@@ -168,12 +168,13 @@ const Notifications: React.FC = () => {
           </p>
         </Card>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2 stagger-fade-in">
           {filteredNotifications.map((notification) => (
             <Card
               key={notification._id}
-              className={`p-4 transition-all hover:shadow-md ${
-                !notification.read ? 'bg-indigo-50 border-indigo-200' : ''
+              hover
+              className={`p-4 hover-lift ${
+                !notification.read ? 'bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200' : ''
               }`}
             >
               <div className="flex items-start gap-4">

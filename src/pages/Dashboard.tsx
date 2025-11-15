@@ -42,16 +42,16 @@ const Dashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header Skeleton */}
-          <div className="mb-8">
+          <div className="mb-8 animate-fade-in">
             <Skeleton className="h-10 w-64 mb-2" />
             <Skeleton className="h-6 w-96" />
           </div>
 
           {/* Stats Cards Skeleton */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 stagger-fade-in">
             {[1, 2, 3, 4].map((i) => (
               <Card key={i}>
                 <CardContent className="flex items-center justify-between">
@@ -99,72 +99,80 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+        <div className="mb-8 animate-fade-in-down">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">
             Welcome back, {user?.name}! 👋
           </h1>
-          <p className="text-gray-600 mt-2">Here's what's happening with your studies today</p>
+          <p className="text-gray-600 mt-2 text-lg">Here's what's happening with your studies today</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 stagger-fade-in">
+          <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Level</p>
-                <p className="text-3xl font-bold text-gray-900">{user?.level || 1}</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                  {user?.level || 1}
+                </p>
               </div>
-              <div className="bg-blue-100 p-3 rounded-full">
+              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
                 <TrendingUp className="w-6 h-6 text-blue-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">XP Points</p>
-                <p className="text-3xl font-bold text-gray-900">{user?.xp || 0}</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  {user?.xp || 0}
+                </p>
               </div>
-              <div className="bg-green-100 p-3 rounded-full">
+              <div className="bg-gradient-to-br from-green-100 to-emerald-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
                 <Award className="w-6 h-6 text-green-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Coins</p>
-                <p className="text-3xl font-bold text-gray-900">{user?.coins || 0}</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
+                  {user?.coins || 0}
+                </p>
               </div>
-              <div className="bg-yellow-100 p-3 rounded-full">
+              <div className="bg-gradient-to-br from-yellow-100 to-orange-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300">
                 <Award className="w-6 h-6 text-yellow-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card hover className="hover-lift group">
             <CardContent className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Study Streak</p>
-                <p className="text-3xl font-bold text-gray-900">7 days</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                  7 days
+                </p>
               </div>
-              <div className="bg-orange-100 p-3 rounded-full">
+              <div className="bg-gradient-to-br from-orange-100 to-red-100 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <Target className="w-6 h-6 text-orange-600" />
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Today's Tasks */}
-            <Card>
+            <Card hover className="hover-lift">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-bold text-gray-900 flex items-center space-x-2">

@@ -174,8 +174,8 @@ const Messages: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <Card className="overflow-hidden" style={{ height: 'calc(100vh - 120px)' }}>
+    <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in-up">
+      <Card className="overflow-hidden shadow-2xl hover-glow" style={{ height: 'calc(100vh - 120px)' }}>
         <div className="flex h-full">
           {/* Conversations Sidebar */}
           <div className="w-80 border-r border-gray-200 flex flex-col">
@@ -206,8 +206,8 @@ const Messages: React.FC = () => {
                   <button
                     key={conv._id}
                     onClick={() => setActiveConversation(conv._id)}
-                    className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors ${
-                      activeConversation === conv._id ? 'bg-indigo-50' : ''
+                    className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-all duration-200 ${
+                      activeConversation === conv._id ? 'bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-600' : ''
                     }`}
                   >
                     {/* Avatar */}
@@ -285,7 +285,7 @@ const Messages: React.FC = () => {
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 stagger-fade-in">
                 {messages.length === 0 ? (
                   <div className="h-full flex items-center justify-center">
                     <div className="text-center">

@@ -34,8 +34,15 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 px-4 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400 rounded-full opacity-10 animate-float"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-400 rounded-full opacity-10 animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-400 rounded-full opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <Card className="w-full max-w-md animate-scale-in-bounce relative z-10 shadow-2xl">
         <CardHeader>
           <h1 className="text-3xl font-bold text-center text-gray-900">Student Hub</h1>
           <p className="text-center text-gray-600 mt-2">Sign in to your account</p>
