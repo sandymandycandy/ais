@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import User from '../models/User';
 import Note from '../models/Note';
 import Exam from '../models/Exam';
-import Opportunity from '../models/Opportunity';
+import { Opportunity } from '../models/Opportunity';
 import Notification from '../models/Notification';
 import { sendNotificationToUser, broadcastNotification } from '../socket';
 import { io } from '../index';

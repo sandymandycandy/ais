@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Note from '../models/Note';
 import Exam from '../models/Exam';
-import Opportunity from '../models/Opportunity';
+import { Opportunity } from '../models/Opportunity';
 import ActivityLog from '../models/ActivityLog';
 import { sendNotificationToUser } from '../socket';
 import { io } from '../index';
