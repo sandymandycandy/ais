@@ -15,6 +15,8 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const UserManagement = lazy(() => import('./pages/admin/UserManagement'));
 const CreateAnnouncement = lazy(() => import('./pages/admin/CreateAnnouncement'));
+const ContentModeration = lazy(() => import('./pages/admin/ContentModeration'));
+const BulkImport = lazy(() => import('./pages/admin/BulkImport'));
 
 // Lazy load all other pages for code-splitting
 const Notes = lazy(() => import('./pages/Notes'));
@@ -397,6 +399,24 @@ const App: React.FC = () => {
           element={
             <AdminRoute>
               <CreateAnnouncement />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/moderation"
+          element={
+            <AdminRoute>
+              <ContentModeration />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/import"
+          element={
+            <AdminRoute>
+              <BulkImport />
             </AdminRoute>
           }
         />

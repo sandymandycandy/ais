@@ -59,6 +59,12 @@ export interface INote extends Document {
   status: 'active' | 'archived' | 'deleted';
   verified: boolean; // Professor verified
 
+  // Moderation
+  moderationStatus: 'pending' | 'approved' | 'rejected';
+  moderatedBy?: mongoose.Types.ObjectId;
+  moderatedAt?: Date;
+  moderationNote?: string;
+
   createdAt: Date;
   updatedAt: Date;
 }
@@ -112,7 +118,12 @@ const NoteSchema = new Schema<INote>(
     }],
 
     status: { type: String, enum: ['active', 'archived', 'deleted'], default: 'active' },
-    verified: { type: Boolean, default: false }
+    verified: { type: Boolean, default: false },
+
+    moderationStatus: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
+    moderatedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    moderatedAt: { type: Date },
+    moderationNote: { type: String }
   },
   { timestamps: true }
 );
@@ -124,5 +135,6 @@ NoteSchema.index({ tags: 1 });
 NoteSchema.index({ averageRating: -1 });
 NoteSchema.index({ createdAt: -1 });
 NoteSchema.index({ isPublic: 1, status: 1 });
+NoteSchema.index({ moderationStatus: 1, createdAt: -1 });
 
 export default mongoose.model<INote>('Note', NoteSchema);

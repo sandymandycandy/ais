@@ -40,28 +40,23 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       icon: Users
     },
     {
+      to: '/admin/moderation',
+      label: 'Content Moderation',
+      icon: Shield
+    },
+    {
       to: '/admin/announcements/create',
-      label: 'Create Announcement',
+      label: 'Announcements',
       icon: Megaphone
     },
     {
-      to: '/admin/notes',
-      label: 'Manage Notes',
-      icon: FileText
-    },
-    {
-      to: '/admin/exams',
-      label: 'Manage Exams',
-      icon: BookOpen
-    },
-    {
-      to: '/admin/opportunities',
-      label: 'Opportunities',
-      icon: Briefcase
+      to: '/admin/import',
+      label: 'Bulk Import',
+      icon: Users
     },
     {
       to: '/admin/analytics',
-      label: 'Analytics',
+      label: 'Advanced Analytics',
       icon: BarChart3
     },
     {
