@@ -3,11 +3,18 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
 import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/layout/Navbar';
+import AdminLayout from './components/layout/AdminLayout';
 
 // Eager load auth pages for faster initial load
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+
+// Admin pages
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const UserManagement = lazy(() => import('./pages/admin/UserManagement'));
+const CreateAnnouncement = lazy(() => import('./pages/admin/CreateAnnouncement'));
 
 // Lazy load all other pages for code-splitting
 const Notes = lazy(() => import('./pages/Notes'));
@@ -36,6 +43,22 @@ const Messages = lazy(() => import('./pages/Messages'));
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+};
+
+// Admin Route Component
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" />;
+  }
+
+  const adminRoles = ['college_admin', 'company_admin', 'super_admin'];
+  if (!user || !adminRoles.includes(user.role)) {
+    return <Navigate to="/dashboard" />;
+  }
+
+  return <AdminLayout>{children}</AdminLayout>;
 };
 
 // Public Route Component (redirect to dashboard if authenticated)
@@ -345,6 +368,36 @@ const App: React.FC = () => {
                 <Profile />
               </Layout>
             </ProtectedRoute>
+          }
+        />
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/users"
+          element={
+            <AdminRoute>
+              <UserManagement />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/announcements/create"
+          element={
+            <AdminRoute>
+              <CreateAnnouncement />
+            </AdminRoute>
           }
         />
 

@@ -61,6 +61,14 @@ export interface IUser extends Document {
     isPrimary: boolean;
   }[];
 
+  // Role & Permissions
+  role: 'student' | 'college_admin' | 'company_admin' | 'super_admin';
+  organizationName?: string; // For college/company admins
+  organizationType?: 'college' | 'university' | 'company' | 'government';
+  permissions: string[]; // Array of permission strings
+  isActive: boolean;
+  isVerifiedOrganization: boolean;
+
   // Privacy & Settings
   profileVisibility: 'public' | 'private' | 'connections-only';
   emailVerified: boolean;
@@ -146,6 +154,13 @@ const UserSchema = new Schema<IUser>(
       isPrimary: { type: Boolean, default: false }
     }],
 
+    role: { type: String, enum: ['student', 'college_admin', 'company_admin', 'super_admin'], default: 'student' },
+    organizationName: { type: String },
+    organizationType: { type: String, enum: ['college', 'university', 'company', 'government'] },
+    permissions: [{ type: String }],
+    isActive: { type: Boolean, default: true },
+    isVerifiedOrganization: { type: Boolean, default: false },
+
     profileVisibility: { type: String, enum: ['public', 'private', 'connections-only'], default: 'public' },
     emailVerified: { type: Boolean, default: false },
     phoneVerified: { type: Boolean, default: false },
@@ -194,5 +209,7 @@ UserSchema.index({ customProfileUrl: 1 });
 UserSchema.index({ college: 1, course: 1 });
 UserSchema.index({ competitiveExamTargets: 1 });
 UserSchema.index({ level: -1, xp: -1 }); // For leaderboards
+UserSchema.index({ role: 1 });
+UserSchema.index({ organizationName: 1 });
 
 export default mongoose.model<IUser>('User', UserSchema);
