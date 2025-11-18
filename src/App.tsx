@@ -40,6 +40,8 @@ const SkillCourses = lazy(() => import('./pages/SkillCourses'));
 const Analytics = lazy(() => import('./pages/Analytics'));
 const Notifications = lazy(() => import('./pages/Notifications'));
 const Messages = lazy(() => import('./pages/Messages'));
+const CollegeDashboard = lazy(() => import('./pages/CollegeDashboard'));
+const OfficeDashboard = lazy(() => import('./pages/OfficeDashboard'));
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -357,6 +359,30 @@ const App: React.FC = () => {
             <ProtectedRoute>
               <Layout>
                 <Messages />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* College Dashboard Route */}
+        <Route
+          path="/college-dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <CollegeDashboard />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Office Dashboard Route */}
+        <Route
+          path="/office-dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <OfficeDashboard />
               </Layout>
             </ProtectedRoute>
           }
