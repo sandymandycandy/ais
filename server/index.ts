@@ -50,6 +50,7 @@ import gamificationRoutes from './routes/gamification';
 import notificationRoutes from './routes/notifications';
 import uploadRoutes from './routes/upload';
 import adminRoutes from './routes/admin';
+import searchRoutes from './routes/search';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -66,6 +67,7 @@ app.use('/api/gamification', gamificationRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/search', searchRoutes);
 
 // Health check
 app.get('/api/health', (req: Request, res: Response) => {

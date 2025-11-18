@@ -4,6 +4,7 @@ import { useAuthStore } from '../../store/authStore';
 import ScrollProgress from '../ui/ScrollProgress';
 import ThemeToggle from '../ui/ThemeToggle';
 import NotificationCenter from '../notifications/NotificationCenter';
+import GlobalSearch from '../search/GlobalSearch';
 import {
   Home,
   FileText,
@@ -82,6 +83,9 @@ const Navbar: React.FC = () => {
 
           {/* User Menu */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Global Search */}
+            <GlobalSearch />
+
             {/* XP & Coins */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-1 px-3 py-1 bg-yellow-50 dark:bg-yellow-900/30 rounded-full">
