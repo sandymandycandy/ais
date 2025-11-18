@@ -4,7 +4,16 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout /t 5 /nobreak)",
+      "Bash(npm run server:*)",
+      "Bash(ping:*)",
+      "Bash(nul)",
+      "Bash(npm run test:run:*)",
+      "Bash(curl:*)",
+      "Bash(admin_response.json)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
